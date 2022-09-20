@@ -9,7 +9,7 @@ const getUsers = (_req, res) => {
 };
 
 const getUserById = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     pool.query(queries.getUserById, [id], (error, results) => {
         if(error) throw error;
         res.status(200).json(results.rows);
@@ -17,13 +17,12 @@ const getUserById = (req, res) => {
 }
 
 const addUser = (req, res) => {
-    const {email, password, name, username} = req.body;
-    // check email if exists
+    const {id_user, email, password, name} = req.body;
     pool.query(queries.checkEmailExists, [email], (_error, results) => {
         if(results.rows.length){
             res.send("Email already exists!");
         }else{
-            pool.query(queries.addUser, [email, password, name, username], (error, _results) => {
+            pool.query(queries.addUser, [id_user, email, password, name], (error, _results) => {
                 if(error) throw error;
                 res.status(201).send("User Created Successfully!")
                 
