@@ -28,8 +28,6 @@ const addUser = (req, res) => {
                 
             })
         }
-
-        
     })
 }
 
