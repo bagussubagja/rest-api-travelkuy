@@ -26,23 +26,6 @@ const addFavoritePlace = (req, res) => {
     })
 }
 
-// const addFavoritePlace = (req, res) => {
-//     const {id_user, id_place, name} = req.body;
-//     pool.query(queries.checkFavoriteExists, [name], (_error, results) => {
-//         if(results.rows.length){
-//             console.log(results.rows.length);
-//             res.send("Email already exists!");
-//         }else{
-//             pool.query(queries.addUser, [id_user, id_place], (error, _results) => {
-//                 if(error) throw error;
-//                 res.status(201).send("User Created Successfully!")
-                
-//             })
-//         }
-//     })
-// }
-
-
 
 const getFavoritePlace = (req, res) => {
     pool.query(queries.testUserFav, (error, results) => {
