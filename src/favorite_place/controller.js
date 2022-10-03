@@ -27,16 +27,8 @@ const addFavoritePlace = (req, res) => {
 }
 
 
-const getFavoritePlace = (req, res) => {
-    pool.query(queries.testUserFav, (error, results) => {
-        if(error) throw error;
-        res.status(200).json(results.rows);
-    })
-}
-
 module.exports = {
     getFavoritePlacebyUser,
     deleteFavoritePlace,
     addFavoritePlace,
-    getFavoritePlace
 }
