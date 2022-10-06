@@ -18,13 +18,27 @@ const deleteFavoritePlace = (req, res) => {
 }
 
 const addFavoritePlace = (req, res) => {
-    const {id_user, id_place} = req.body;
-    pool.query(queries.addFavoritePlace, [id_user, id_place], (error, _results) => {
-        if(error) throw error;
-        res.status(201).send("Favorite Created Successfully!")
-        
+    const {id_user, id_place, fav_unique} = req.body;
+    pool.query(queries.checkFavoriteExists, [fav_unique], (_error, results) => {
+        if(results.rows.length){
+            res.send("Favorite Already Exists!");
+        }else{
+            pool.query(queries.addFavoritePlace, [id_user, id_place, fav_unique], (error, _results) => {
+                if(error) throw error;
+                res.status(201).send("Favorite Successfully Created!");
+            })
+        }
     })
 }
+
+// const addFavoritePlace = (req, res) => {
+//     const {id_user, id_place} = req.body;
+//     pool.query(queries.addFavoritePlace, [id_user, id_place], (error, _results) => {
+//         if(error) throw error;
+//         res.status(201).send("Favorite Created Successfully!")
+        
+//     })
+// }
 
 
 module.exports = {

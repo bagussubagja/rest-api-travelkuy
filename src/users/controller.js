@@ -52,12 +52,14 @@ const updateUser = (req, res) => {
         const noUserFound = !results.rows.length;
         if(noUserFound){
             res.send("User doesnt exist in the database!");
+        }else{
+            pool.query(queries.updateUser, [name, id_user], (error, _results) => {
+                if(error) throw error;
+                res.status(200).send("User updated successfully!")
+            })
         }
 
-        pool.query(queries.updateUser, [name, id_user], (error, _results) => {
-            if(error) throw error;
-            res.status(200).send("User updated successfully!")
-        })
+        
     })
 }
 
