@@ -46,15 +46,15 @@ const deleteUser = (req, res) => {
 }
 
 const updateUser = (req, res) => {
-    const id = parseInt(req.params.id);
-    const {email} = req.body;
-    pool.query(queries.getUserById, [id], (_error, results) => {
+    const id_user = req.params.id_user;
+    const {name} = req.body;
+    pool.query(queries.getUserById, [id_user], (_error, results) => {
         const noUserFound = !results.rows.length;
         if(noUserFound){
             res.send("User doesnt exist in the database!");
         }
 
-        pool.query(queries.updateUser, [email, id], (error, _results) => {
+        pool.query(queries.updateUser, [name, id_user], (error, _results) => {
             if(error) throw error;
             res.status(200).send("User updated successfully!")
         })
