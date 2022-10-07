@@ -10,8 +10,8 @@ const getSchedules = (req, res) => {
 }
 
 const addSchedule = (req, res) => {
-    const {name, start_date, end_date, thumbnail, num_of_person, total_price, id_user} = req.body;
-    pool.query(queries.addSchedule, [name, start_date, end_date, thumbnail, num_of_person, total_price, id_user], (error, _results) => {
+    const {name, start_date, end_date, thumbnail, num_of_person, total_price, id_user, id_place} = req.body;
+    pool.query(queries.addSchedule, [name, start_date, end_date, thumbnail, num_of_person, total_price, id_user, id_place], (error, _results) => {
         if(error) throw error;
         res.status(201).send("Schedule Created Successfully!")
     })
