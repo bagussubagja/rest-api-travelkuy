@@ -21,7 +21,7 @@ const deleteSchedule = (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(queries.deleteSchedule, [id], (error, _results) => {
         if(error) throw error;
-        res.status(200).send("ok")
+        res.status(200).send("Schedule Deleted Successfully!")
     })
 }
 

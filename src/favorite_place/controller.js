@@ -13,7 +13,7 @@ const deleteFavoritePlace = (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(queries.deleteFavoritePlace, [id], (error, _results) => {
         if(error) throw error;
-        res.status(200).send("ok")
+        res.status(200).send("Favorite Successfully Deleted!");
     })
 }
 
@@ -31,14 +31,6 @@ const addFavoritePlace = (req, res) => {
     })
 }
 
-// const addFavoritePlace = (req, res) => {
-//     const {id_user, id_place} = req.body;
-//     pool.query(queries.addFavoritePlace, [id_user, id_place], (error, _results) => {
-//         if(error) throw error;
-//         res.status(201).send("Favorite Created Successfully!")
-        
-//     })
-// }
 
 
 module.exports = {
